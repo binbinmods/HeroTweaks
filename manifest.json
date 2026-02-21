@@ -1,0 +1,7 @@
+{
+  "name": "Hero_Tweaks",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/binbinmods/HeroTweaks",
+  "description": "A mod that DescriptionToReplace",
+  "dependencies": ["BepInEx-BepInExPack_AcrossTheObelisk-5.4.23"]
+}
