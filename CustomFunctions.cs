@@ -9,6 +9,7 @@ using static UnityEngine.Mathf;
 using UnityEngine.TextCore.LowLevel;
 using static HeroTweaks.Plugin;
 using System.Collections.ObjectModel;
+using BepInEx;
 
 namespace HeroTweaks
 {
@@ -1441,6 +1442,61 @@ namespace HeroTweaks
         {
             // MatchManager.Instance.GetCardData(heroHand.Last());
             return MatchManager.Instance.GetCardData(heroHand.Last());
+        }
+
+        public static void AddCardToHand(string cardId, int num)
+        {
+            Hero heroActive = MatchManager.Instance.GetHeroHeroActive();
+            if (heroActive == null || cardId.IsNullOrWhiteSpace())
+                return;
+            MatchManager.Instance.GenerateNewCard(num, cardId, createCard: false, Enums.CardPlace.Hand, null, null, heroActive.HeroIndex);
+        }
+
+        public static Hero GetLowestHealthHero(Enums.EventActivation theEvent, Character character, Character target, int auxInt, string auxString, CardData castedCard, string trait)
+        {
+            int num = -1;
+            float num2 = 99.9999f;
+            Hero[] teamHero = MatchManager.Instance.GetTeamHero();
+            for (int i = 0; i < teamHero.Length; i++)
+            {
+                if (teamHero[i] != null && teamHero[i].HeroData != null && teamHero[i].Alive)
+                {
+                    float hpPercent = teamHero[i].GetHpPercent();
+                    if (hpPercent <= num2)
+                    {
+                        num2 = hpPercent;
+                        num = i;
+                    }
+                }
+            }
+            if (num > -1)
+            {
+                List<int> list = new List<int>();
+                list.Add(num);
+                for (int j = 0; j < teamHero.Length; j++)
+                {
+                    if (j != num && teamHero[j] != null && teamHero[j].HeroData != null && teamHero[j].Alive && teamHero[j].GetHpPercent() == num2)
+                    {
+                        list.Add(j);
+                    }
+                }
+                if (list.Count > 0)
+                {
+                    for (int k = 0; k < 10; k++)
+                    {
+                        num = ((list.Count <= 1) ? list[0] : list[MatchManager.Instance.GetRandomIntRange(0, list.Count, "trait")]);
+                        if (k == 9)
+                        {
+                            num = list[0];
+                        }
+                        if (num < teamHero.Length && teamHero[num] != null && teamHero[num].HeroData != null)
+                        {
+                            return teamHero[num];
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
     }

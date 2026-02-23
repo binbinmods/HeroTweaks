@@ -63,6 +63,22 @@ namespace HeroTweaks
 
         }
 
+        public static void binbinmindcollapse(Character source)
+        {
+            AddCardToHand("binbininducesleep", 1);
+            source?.HeroItem?.ScrollCombatText(Texts.Instance.GetText("traits_mindcollapse"), Enums.CombatScrollEffectType.Trait);
+
+        }
+
+        public static void binbinrevealingpresence(Character source)
+        {
+            Character randomNPC = GetRandomCharacter(MatchManager.Instance.GetTeamNPC());
+            if (randomNPC != null)
+            {
+                randomNPC.SetAuraTrait(source, "revealed", 1);
+                source?.HeroItem?.ScrollCombatText(Texts.Instance.GetText("traits_revealingpresence"), Enums.CombatScrollEffectType.Trait);
+            }
+        }
 
     }
 }
