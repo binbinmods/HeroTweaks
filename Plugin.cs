@@ -26,7 +26,7 @@ namespace HeroTweaks
 
     // If you have other dependencies, such as obeliskial content, make sure to include them here.
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
-    [BepInDependency("com.stiffmeds.obeliskialessentials", BepInDependency.DependencyFlags.SoftDependency)] // this is the name of the .dll in the !libs folder.
+    [BepInDependency("com.stiffmeds.obeliskialessentials", BepInDependency.DependencyFlags.HardDependency)] // this is the name of the .dll in the !libs folder.
     [BepInProcess("AcrossTheObelisk.exe")] //Don't change this
 
     // If PluginInfo isn't working, you are either:
@@ -48,7 +48,7 @@ namespace HeroTweaks
 
         public static ConfigEntry<bool> EnableMod { get; set; }
         public static ConfigEntry<bool> EnableDebugging { get; set; }
-        // public static ConfigEntry<bool> EnablePerkChangeInTowns { get; set; }
+        public static ConfigEntry<bool> EnableOPPurpleStarterItems { get; set; }
         // public static ConfigEntry<bool> EnablePerkChangeWhenever { get; set; }
 
         public static string PluginName;
@@ -72,12 +72,31 @@ namespace HeroTweaks
             string modName = "HeroTweaks";
             EnableMod = Config.Bind(new ConfigDefinition(modName, "EnableMod"), true, new ConfigDescription("Enables the mod. If false, the mod will not work then next time you load the game."));
             EnableDebugging = Config.Bind(new ConfigDefinition(modName, "EnableDebugging"), false, new ConfigDescription("Enables the debugging"));
-            // EnablePerkChangeInTowns = Config.Bind(new ConfigDefinition(modName, "EnablePerkChangeInTowns"), true, new ConfigDescription("Enables you to change perks in any town."));
+            EnableOPPurpleStarterItems = Config.Bind(new ConfigDefinition(modName, "EnableOPPurpleStarterItems"), false, new ConfigDescription("Enables the OP purple starter items."));
             // DevMode = Config.Bind(new ConfigDefinition("DespairMode", "DevMode"), false, new ConfigDescription("Enables all of the things for testing."));
             // apply patches, this functionally runs all the code for Harmony, running your mod
             PluginName = PluginInfo.PLUGIN_NAME;
             PluginVersion = PluginInfo.PLUGIN_VERSION;
             PluginGUID = PluginInfo.PLUGIN_GUID;
+            if (EnableMod.Value && EnableOPPurpleStarterItems.Value)
+            {
+                string name = $"Hero Tweaks - OP Purple Starter Items";
+                RegisterMod(
+                    _name: name,
+                    _author: "binbin",
+                    _description: name,
+                    _version: PluginInfo.PLUGIN_VERSION,
+                    _date: ModDate,
+                    _contentFolder: "HeroTweaksPurpleItems",
+                    _link: @"https://github.com/binbinmods/HeroTweaks"
+                );
+
+                string card = "rocketbootsrare";
+                // text = $"All resistances {ColorTextArray("aura", "+10%")} \n {SpriteText("Fast")} on this hero can stack.";
+                string text = $"{HeroTweaksFunctions.SpriteText("Fast")} on this hero can stack.";
+                AddTextToCardDescription(text, TextLocation.Beginning, card, includeAB: false, includeRare: false);
+            }
+
             if (EnableMod.Value)
             {
                 if (EssentialsCompatibility.Enabled)

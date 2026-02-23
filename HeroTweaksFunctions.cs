@@ -10,13 +10,61 @@ using UnityEngine.TextCore.LowLevel;
 using static HeroTweaks.Plugin;
 using System.Collections.ObjectModel;
 using UnityEngine;
+using System.Text;
 
 namespace HeroTweaks
 {
     public class HeroTweaksFunctions
     {
 
-
+        public static string SpriteText(string sprite)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string text = sprite.ToLower().Replace(" ", "");
+            switch (text)
+            {
+                case "block":
+                case "card":
+                    stringBuilder.Append("<space=.2>");
+                    break;
+                case "piercing":
+                    stringBuilder.Append("<space=.4>");
+                    break;
+                case "bleed":
+                    stringBuilder.Append("<space=.1>");
+                    break;
+                case "bless":
+                    stringBuilder.Append("<space=.1>");
+                    break;
+                default:
+                    stringBuilder.Append("<space=.3>");
+                    break;
+            }
+            stringBuilder.Append(" <space=-.2>");
+            stringBuilder.Append("<size=+.1><sprite name=");
+            stringBuilder.Append(text);
+            stringBuilder.Append("></size>");
+            switch (text)
+            {
+                case "bleed":
+                    stringBuilder.Append("<space=-.4>");
+                    break;
+                case "card":
+                    stringBuilder.Append("<space=-.2>");
+                    break;
+                case "powerful":
+                case "fury":
+                    stringBuilder.Append("<space=-.1>");
+                    break;
+                default:
+                    stringBuilder.Append("<space=-.2>");
+                    break;
+                case "reinforce":
+                case "fire":
+                    break;
+            }
+            return stringBuilder.ToString();
+        }
         public static bool IsSpiderCard(CardData card)
         {
             return card.Id.StartsWith("spider") || card.Id.StartsWith("mentalsc") || card.Id.StartsWith("templelur") || card.Id.StartsWith("hatch");

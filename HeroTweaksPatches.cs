@@ -489,20 +489,27 @@ namespace HeroTweaks
             // LogInfo($"GACM {subclassName}");
 
             Character characterOfInterest = _type == "set" ? _characterTarget : _characterCaster;
-            string traitOfInterest;
+            string thingOfInterest;
             switch (_acId)
             {
-                // trait2a:
-
-                // trait2b:
-
-                // trait 4a;
-
-                // trait 4b:
+                case "fast":
+                    thingOfInterest = "rocketbootsrare";
+                    if (IfCharacterHas(characterOfInterest, CharacterHas.Item, thingOfInterest, AppliesTo.ThisHero))
+                    {
+                        __result.GainCharges = true;
+                        __result.ConsumeAll = false;
+                    }
+                    thingOfInterest = "loadedgun";
+                    if (IfCharacterHas(characterOfInterest, CharacterHas.Trait, thingOfInterest, AppliesTo.ThisHero))
+                    {
+                        __result.ConsumedAtTurn = true;
+                        __result.ConsumedAtTurnBegin = false;
+                    }
+                    break;
 
                 case "zealotry":
-                    traitOfInterest = "zealotry";
-                    if (IfCharacterHas(characterOfInterest, CharacterHas.Trait, traitOfInterest, AppliesTo.ThisHero))
+                    thingOfInterest = "zealotry";
+                    if (IfCharacterHas(characterOfInterest, CharacterHas.Trait, thingOfInterest, AppliesTo.ThisHero))
                     {
                         __result.AuraDamageIncreasedPercentPerStack = 3.0f;
                     }
