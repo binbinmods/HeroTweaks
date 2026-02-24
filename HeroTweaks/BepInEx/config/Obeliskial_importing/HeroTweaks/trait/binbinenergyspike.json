@@ -24,12 +24,12 @@
     "DamageBonusPercentValue": 0.0,
     "DamageBonusPercentValue2": 0.0,
     "DamageBonusPercentValue3": 0.0,
-    "Description": "On hit, deal Shadow damage equal to 15% of the target's Burn charges and Fire damage equal to 15% of the target's Bleed charges.",
+    "Description": "On hit, deal Shadow damage to the target equal to 15% of the target's Burn charges and Fire damage equal to 15% of the target's Bleed charges.",
     "HealFlatBonus": 0,
     "HealPercentBonus": 0.0,
     "HealReceivedFlatBonus": 0,
     "HealReceivedPercentBonus": 0.0,
-    "ID": "energyspike",
+    "ID": "binbinenergyspike",
     "MaxBleedDamagePerTurn": -1,
     "ResistModified1": "None",
     "ResistModified2": "None",
@@ -41,6 +41,6 @@
     "TimesPerTurn": 0,
     "TraitCard": "",
     "TraitCardForAllHeroes": "",
-    "TraitName": "Energy Spike",
+    "TraitName": "Sanguine Magic",
     "TryActivateOnEveryEvent": false
 }

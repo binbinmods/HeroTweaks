@@ -4,6 +4,13 @@ This is a simple mod that tweaks several heroes' enchantments and traits. Mostly
 
 Partially compatible with other mods that update heroes (though they may override parts of this and this will modify parts of those mods).
 
+Somewhat larger changes were made to:
+
+- Nyrada
+- Velarion
+- Tulah
+- Nenukil
+
 To change the configs, just open up the config menu by pressing F5 and then changing the appropriate values. Restarting the game is only necessary when enabling/disabling the mod.
 
 Let me know if you have any other options you would like to add to the mod!

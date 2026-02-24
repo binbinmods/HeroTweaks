@@ -110,7 +110,7 @@
     "EffectTrailRepeat": false,
     "EffectTrailSpeed": 1.0,
     "EndTurn": false,
-    "EnergyCost": 1,
+    "EnergyCost": 0,
     "EnergyCostForShow": 0,
     "EnergyRecharge": 0,
     "EnergyRechargeSpecialValueGlobal": false,
