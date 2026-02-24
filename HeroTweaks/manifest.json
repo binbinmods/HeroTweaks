@@ -1,0 +1,11 @@
+{
+  "name": "Hero_Tweaks",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/binbinmods/HeroTweaks",
+  "description": "A mod that provides minor quality of life updates to nearly every hero, improving their less used enchantments, traits, and cards. Recommended to use alongside Starter Swaps",
+  "dependencies": [
+    "BepInEx-BepInExPack_AcrossTheObelisk-5.4.23",
+    "Binbin-Starter_Swaps-1.0.0",
+    "meds-Obeliskial_Content-1.7.3"
+  ]
+}

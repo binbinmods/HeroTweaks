@@ -494,7 +494,7 @@ namespace HeroTweaks
             {
                 case "fast":
                     thingOfInterest = "rocketbootsrare";
-                    if (IfCharacterHas(characterOfInterest, CharacterHas.Item, thingOfInterest, AppliesTo.ThisHero))
+                    if (IfCharacterHas(characterOfInterest, CharacterHas.Item, thingOfInterest, AppliesTo.ThisHero) && EnableOPPurpleStarterItems.Value)
                     {
                         __result.GainCharges = true;
                         __result.ConsumeAll = false;
@@ -507,6 +507,11 @@ namespace HeroTweaks
                     }
                     break;
 
+                case "powerful":
+                    thingOfInterest = "powergloverare";
+                    UpdateMaxMadnessChargesByItem(ref __result, characterOfInterest, thingOfInterest);
+                    break;
+
                 case "zealotry":
                     thingOfInterest = "zealotry";
                     if (IfCharacterHas(characterOfInterest, CharacterHas.Trait, thingOfInterest, AppliesTo.ThisHero))
@@ -514,8 +519,35 @@ namespace HeroTweaks
                         __result.AuraDamageIncreasedPercentPerStack = 3.0f;
                     }
                     break;
-
+                case "bleed":
+                    thingOfInterest = "boneclawsrare";
+                    if (IfCharacterHas(characterOfInterest, CharacterHas.Item, thingOfInterest, AppliesTo.ThisHero) && EnableOPPurpleStarterItems.Value)
+                    {
+                        __result.DamageTypeWhenConsumed = Enums.DamageType.None;
+                        __result.DamageWhenConsumedPerCharge = 0;
+                    }
+                    break;
+                case "dark":
+                    thingOfInterest = "soullanternrare";
+                    if (IfCharacterHas(characterOfInterest, CharacterHas.Item, thingOfInterest, AppliesTo.ThisHero) && EnableOPPurpleStarterItems.Value)
+                    {
+                        __result.ExplodeAtStacks = 0;
+                        __result.DamageTypeWhenConsumed = Enums.DamageType.None;
+                        __result.DamageWhenConsumedPerCharge = 0;
+                    }
+                    break;
             }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(TraitData), "SetNameAndDescription")]
+        public static bool SetNameAndDescriptionPostfix(ref TraitData __instance, ref string ___description, ref string ___traitName)
+        {
+            ___traitName = __instance?.TraitName;
+            ___description = __instance?.Description;
+            if ((___traitName?.IsNullOrWhiteSpace() ?? true) || (___description?.IsNullOrWhiteSpace() ?? true))
+                return true;
+            return false;
         }
 
 

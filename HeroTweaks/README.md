@@ -2,7 +2,7 @@
 
 This is a simple mod that tweaks several heroes' enchantments and traits. Mostly minor changes.
 
-Not compatible with other mods that adjust hero
+Partially compatible with other mods that update heroes (though they may override parts of this and this will modify parts of those mods).
 
 To change the configs, just open up the config menu by pressing F5 and then changing the appropriate values. Restarting the game is only necessary when enabling/disabling the mod.
 
@@ -14,6 +14,7 @@ This has not been tested in multiplayer yet, so let me know if there are any iss
 | :-------------- | :-----: | :------------------------------------------------------------------------------------------ |
 | EnableMod       |  true   | Enables the mod. Restart the game after changing this.                                      |
 | EnableDebugging |  false  | Enables debugging for if errors occur. Please enable this before submitting a LogOutput.log |
+| EnableOPPurples |  false  | Enables the OP purple starter items. Requires restart.                                      |
 
 ## Installation (manual)
 

@@ -26,6 +26,7 @@ public static class EssentialsCompatibility
             _description: "Hero Tweaks",
             _version: PluginVersion,
             _date: ModDate,
+            _contentFolder: "HeroTweaks",
             _link: @"https://github.com/binbinmods/HeroTweaks"
         );
         LogInfo($"{PluginGUID} {PluginVersion} has loaded with Essentials!");

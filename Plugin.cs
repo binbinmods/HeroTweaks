@@ -72,7 +72,7 @@ namespace HeroTweaks
             string modName = "HeroTweaks";
             EnableMod = Config.Bind(new ConfigDefinition(modName, "EnableMod"), true, new ConfigDescription("Enables the mod. If false, the mod will not work then next time you load the game."));
             EnableDebugging = Config.Bind(new ConfigDefinition(modName, "EnableDebugging"), false, new ConfigDescription("Enables the debugging"));
-            EnableOPPurpleStarterItems = Config.Bind(new ConfigDefinition(modName, "EnableOPPurpleStarterItems"), false, new ConfigDescription("Enables the OP purple starter items."));
+            EnableOPPurpleStarterItems = Config.Bind(new ConfigDefinition(modName, "EnableOPPurpleStarterItems"), false, new ConfigDescription("Enables the OP purple starter items. Requires restart."));
             // DevMode = Config.Bind(new ConfigDefinition("DespairMode", "DevMode"), false, new ConfigDescription("Enables all of the things for testing."));
             // apply patches, this functionally runs all the code for Harmony, running your mod
             PluginName = PluginInfo.PLUGIN_NAME;
@@ -95,6 +95,14 @@ namespace HeroTweaks
                 // text = $"All resistances {ColorTextArray("aura", "+10%")} \n {SpriteText("Fast")} on this hero can stack.";
                 string text = $"{HeroTweaksFunctions.SpriteText("Fast")} on this hero can stack.";
                 AddTextToCardDescription(text, TextLocation.Beginning, card, includeAB: false, includeRare: false);
+                card = "boneclawsrare";
+                text = $"{HeroTweaksFunctions.SpriteText("bleed")} does not damage this hero.";
+                AddTextToCardDescription(text, TextLocation.Beginning, card, includeAB: false, includeRare: false);
+                card = "soullanternrare";
+                text = $"{HeroTweaksFunctions.SpriteText("dark")} does not explode on this hero.";
+                AddTextToCardDescription(text, TextLocation.Beginning, card, includeAB: false, includeRare: false);
+
+
             }
 
             if (EnableMod.Value)

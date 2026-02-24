@@ -17,6 +17,13 @@ namespace HeroTweaks
     public class HeroTweaksFunctions
     {
 
+        public static List<string> GetModifiedTraits()
+        {
+            List<string> modifiedTraits = new List<string>();
+
+            // Get the names of all files in the trait folder (less the .json extension)
+            return modifiedTraits;
+        }
         public static string SpriteText(string sprite)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -65,6 +72,62 @@ namespace HeroTweaks
             }
             return stringBuilder.ToString();
         }
+
+        public static void UpdateMaxMadnessChargesByItem(ref AuraCurseData __result, Character characterOfInterest, string itemID)
+        {
+            if (__result == null)
+            {
+                LogDebug("null AuraCurse");
+                return;
+            }
+            // if(itemID == "ringoffire")
+            // {
+            //     LogDebug("UpdateChargesByItem: " + itemID );
+            //     LogDebug($"Team have: {itemID} {AtOManager.Instance.TeamHaveItem(itemID)} ");
+            //     LogDebug($"Character have: {itemID} {IfCharacterHas(characterOfInterest, CharacterHas.Item, itemID, AppliesTo.Global)} ");
+            // }
+
+
+            AppliesTo appliesTo = __result.IsAura ? AppliesTo.Heroes : AppliesTo.Monsters;
+
+            if (IfCharacterHas(characterOfInterest, CharacterHas.Item, itemID + "rare", appliesTo))
+            {
+                LogDebug("UpdateChargesByItem: " + itemID + "rare");
+                ItemData itemData = Globals.Instance.GetItemData(itemID + "rare");
+                if (itemData == null)
+                    return;
+
+                if (__result.MaxCharges != -1)
+                {
+                    __result.MaxCharges += itemData.AuracurseCustomModValue1;
+                }
+                if (__result.MaxMadnessCharges != -1)
+                {
+                    __result.MaxMadnessCharges += itemData.AuracurseCustomModValue1;
+                }
+            }
+            else if (IfCharacterHas(characterOfInterest, CharacterHas.Item, itemID, appliesTo))
+            {
+                LogDebug("UpdateChargesByItem: " + itemID);
+                ItemData itemData = Globals.Instance.GetItemData(itemID);
+                if (itemData == null)
+                    return;
+
+                if (__result.MaxCharges != -1)
+                {
+                    __result.MaxCharges += itemData.AuracurseCustomModValue1;
+                }
+                if (__result.MaxMadnessCharges != -1)
+                {
+                    __result.MaxMadnessCharges += itemData.AuracurseCustomModValue1;
+                }
+
+                LogDebug($"UpdateChargesByItem: {itemID} - post update max charges {__result.MaxMadnessCharges}");
+
+            }
+
+        }
+
         public static bool IsSpiderCard(CardData card)
         {
             return card.Id.StartsWith("spider") || card.Id.StartsWith("mentalsc") || card.Id.StartsWith("templelur") || card.Id.StartsWith("hatch");

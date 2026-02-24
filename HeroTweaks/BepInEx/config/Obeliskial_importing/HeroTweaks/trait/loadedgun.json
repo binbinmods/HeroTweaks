@@ -24,7 +24,7 @@
     "DamageBonusPercentValue": 0.0,
     "DamageBonusPercentValue2": 0.0,
     "DamageBonusPercentValue3": 0.0,
-    "Description": "At the start of your turn, reduce the cost of the \"Ranged Attack\" cards in your hand by 2 until they are discarded. When you play a \"Ranged Attack\", suffer 1 \"Burn\" and 1 \"Reloading\". (Reloading can be buffered and dispelled)",
+    "Description": "Fast on you is lost at the end of turn. At the start of your turn, reduce the cost of the \"Ranged Attack\"s in your hand by 2 until discarded. When you play a \"Ranged Attack\", suffer 1 \"Burn\" and 1 \"Reloading\". (Reloading can be buffered and dispelled)",
     "HealFlatBonus": 0,
     "HealPercentBonus": 0.0,
     "HealReceivedFlatBonus": 0,
