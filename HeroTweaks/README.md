@@ -10,6 +10,7 @@ Somewhat larger changes were made to:
 - Velarion
 - Tulah
 - Nenukil
+- Evelyn
 
 To change the configs, just open up the config menu by pressing F5 and then changing the appropriate values. Restarting the game is only necessary when enabling/disabling the mod.
 

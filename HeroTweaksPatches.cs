@@ -97,6 +97,7 @@ namespace HeroTweaks
                 binbinenergyspike(_theEvent, _character, _target, _auxInt, _auxString, _castedCard, _trait);
                 return false;
             }
+
             return true;
         }
 
