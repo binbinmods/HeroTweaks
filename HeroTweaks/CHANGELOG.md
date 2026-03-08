@@ -1,3 +1,9 @@
+# 1.0.3
+
+Updated Broodmother, Mind Collapse, and Dark Overflow
+
+Changed text on Beacon of Light and Righteous Flame
+
 # 1.0.2
 
 Update for AtO v1.7.4.2

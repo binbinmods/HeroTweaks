@@ -51,7 +51,7 @@ namespace HeroTweaks
             if (theEvent == Enums.EventActivation.Killed && AtOManager.Instance.TeamHaveTrait(traitOfInterest) && IsLivingHero(__instance))
             {
 
-                __instance.DoTraitFunction(traitOfInterest);
+                binbinbroodmother(theEvent, __instance, target, auxInt, auxString, null, traitOfInterest);
             }
 
             traitOfInterest = "spiderqueen";
@@ -508,12 +508,20 @@ namespace HeroTweaks
                     }
                     break;
 
+
                 case "powerful":
                     thingOfInterest = "powergloverare";
                     UpdateMaxMadnessChargesByItem(ref __result, characterOfInterest, thingOfInterest);
                     break;
+                case "sleep":
+                    thingOfInterest = "binbinmindcollapse";
+                    if (IfCharacterHas(characterOfInterest, CharacterHas.Trait, thingOfInterest, AppliesTo.Monsters))
+                    {
+                        __result.GainCharges = true;
+                    }
+                    break;
 
-                case "zealotry":
+                case "zeal":
                     thingOfInterest = "zealotry";
                     if (IfCharacterHas(characterOfInterest, CharacterHas.Trait, thingOfInterest, AppliesTo.ThisHero))
                     {
@@ -536,7 +544,14 @@ namespace HeroTweaks
                         __result.DamageTypeWhenConsumed = Enums.DamageType.None;
                         __result.DamageWhenConsumedPerCharge = 0;
                     }
+                    thingOfInterest = "binbindarkoverflow";
+                    if (IfCharacterHas(characterOfInterest, CharacterHas.Trait, thingOfInterest, AppliesTo.ThisHero))
+                    {
+                        __result.DamageWhenConsumedPerCharge += 1;
+                    }
+
                     break;
+
             }
         }
 

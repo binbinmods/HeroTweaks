@@ -24,7 +24,7 @@
     "DamageBonusPercentValue": 0.0,
     "DamageBonusPercentValue2": 0.0,
     "DamageBonusPercentValue3": 0.0,
-    "Description": "At the start of the combat, and when an enemy dies, shuffle 1 \"Spiderling\" card into each hero deck.",
+    "Description": "At the start of the combat, shuffle 1 \"Spiderling\" card into each hero deck. When an enemy dies, shuffle 1 \"spiderling\" into this hero's deck.",
     "HealFlatBonus": 0,
     "HealPercentBonus": 0.0,
     "HealReceivedFlatBonus": 0,

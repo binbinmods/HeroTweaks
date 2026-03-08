@@ -176,7 +176,7 @@ namespace HeroTweaks
 
         public static void binbinmindcollapse(Character source)
         {
-            AddCardToHand("binbininducesleep", 1);
+            AddCardToHand("binbininsomnolence", 1);
             source?.HeroItem?.ScrollCombatText(Texts.Instance.GetText("traits_mindcollapse"), Enums.CombatScrollEffectType.Trait);
 
         }
@@ -189,6 +189,46 @@ namespace HeroTweaks
                 randomNPC.SetAuraTrait(source, "revealed", 1);
                 source?.HeroItem?.ScrollCombatText(Texts.Instance.GetText("traits_revealingpresence"), Enums.CombatScrollEffectType.Trait);
             }
+        }
+
+        public static void binbinbroodmother(Enums.EventActivation theEvent, Character character, Character target, int auxInt, string auxString, CardData castedCard, string trait)
+        {
+            string id = "spiderling";
+            Character characterWithTrait = null;
+            if (!AtOManager.Instance.TeamHaveTrait("binbinbroodmother"))
+            {
+                return;
+            }
+            if (!AtOManager.Instance.TeamHaveTrait("broodmother"))
+            {
+                return;
+            }
+            Hero[] teamHero = MatchManager.Instance.GetTeamHero();
+            for (int i = 0; i < teamHero.Length; i++)
+            {
+                if (teamHero[i].HaveTrait("binbinbroodmother") || teamHero[i].HaveTrait("broodmother"))
+                {
+                    characterWithTrait = teamHero[i];
+                }
+
+                if (teamHero[i].HaveTrait("templelurkers"))
+                {
+                    id = ((!character.HaveTrait("spiderqueen")) ? "templelurker" : "templelurkerrare");
+                    characterWithTrait = teamHero[i];
+                    break;
+                }
+                if (teamHero[i].HaveTrait("mentalscavengers"))
+                {
+                    characterWithTrait = teamHero[i];
+                    id = ((!character.HaveTrait("spiderqueen")) ? "mentalscavengers" : "mentalscavengersrare");
+                    break;
+                }
+            }
+            string text = MatchManager.Instance.CreateCardInDictionary(id);
+            MatchManager.Instance.GetCardData(text);
+            MatchManager.Instance.GenerateNewCard(1, text, createCard: false, Enums.CardPlace.RandomDeck, null, null, characterWithTrait.HeroIndex);
+            character.HeroItem.ScrollCombatText(Texts.Instance.GetText("traits_BroodMother"), Enums.CombatScrollEffectType.Trait);
+            MatchManager.Instance.ItemTraitActivated();
         }
 
     }

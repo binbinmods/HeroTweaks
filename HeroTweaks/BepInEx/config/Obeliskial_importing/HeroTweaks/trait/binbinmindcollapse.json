@@ -24,7 +24,7 @@
     "DamageBonusPercentValue": 0.0,
     "DamageBonusPercentValue2": 0.0,
     "DamageBonusPercentValue3": 0.0,
-    "Description": "When you cast a card with cost >= 3, add 1 \"Induce Sleep\" card to your hand.",
+    "Description": "Sleep on enemies can stack. When you cast a card with cost >= 3, add 1 \"Somnolence\" card to your hand.",
     "HealFlatBonus": 0,
     "HealPercentBonus": 0.0,
     "HealReceivedFlatBonus": 0,
